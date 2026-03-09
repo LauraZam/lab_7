@@ -27,10 +27,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final confirmFocus = FocusNode();
 
   bool _hidePass = true;
-  bool validatePhoneNumber(String input) {
-    final phoneExp = RegExp(r'^\(\d\d\d\)\d\d\d\-\d\d\d\d$');
-    return phoneExp.hasMatch(input);
-  }
+  // bool validatePhoneNumber(String input) {
+  //   final phoneExp = RegExp(r'^\(\d\d\d\)\d\d\d\-\d\d\d\d$');
+  //   return phoneExp.hasMatch(input);
+  // }
 
   @override
   void dispose() {
@@ -136,14 +136,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                 ),
                 keyboardType: TextInputType.phone,
-                // inputFormatters: [
-                //   FilteringTextInputFormatter.digitsOnly
-                // ],
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Phone number required";
                   }
-                  if (!validatePhoneNumber(value)) {
+                  if (value.length != 10) {
                     return "Format: (XXX)XXX-XXXX";
                   }
                   return null;
